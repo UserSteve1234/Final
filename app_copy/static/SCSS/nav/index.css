@@ -1,0 +1,23 @@
+header nav {
+  display: flex;
+  align-items: center;
+}
+header nav .right {
+  display: flex;
+  align-items: center;
+}
+header nav .right .nav-links {
+  margin-left: 380px;
+}
+header nav .right .nav-links a {
+  margin-left: 40px;
+  padding: 2px;
+  border-radius: 20%;
+  transition: 400ms;
+}
+header nav .right .nav-links a:hover {
+  background-color: blue;
+}
+header nav .right .personal-section {
+  margin-left: 400px;
+}/*# sourceMappingURL=index.css.map */

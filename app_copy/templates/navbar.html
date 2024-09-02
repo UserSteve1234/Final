@@ -1,0 +1,221 @@
+{% load static %}
+
+{% block js %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const burger = document.getElementById('burger')
+      const navLinksBurger = document.getElementById('nav-links')
+      const closeBtn = document.getElementById('close-btn')
+    
+      burger.addEventListener('click', function () {
+        navLinksBurger.classList.toggle('active')
+        burger.classList.toggle('open')
+      })
+    
+      closeBtn.addEventListener('click', function () {
+        navLinksBurger.classList.remove('active')
+      })
+    })
+  </script>
+{% endblock %}
+
+{% block css %}
+  <style>
+    header {
+      background-color: snow;
+      width: 100%;
+      padding: 10px 0;
+      box-sizing: border-box;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+    
+    .left {
+      margin-left: 12px;
+    }
+    
+    .right {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+    
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      margin-left: auto;
+    }
+    
+    .burger .line {
+      width: 25px;
+      height: 3px;
+      background-color: black;
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-links {
+      display: flex;
+      margin-left: 90px;
+    }
+    
+    .nav-links a {
+      margin-left: 15px;
+      padding: 8px 12px;
+      border-radius: 15%;
+      transition: background-color 0.4s;
+    }
+    
+    .nav-links a:hover {
+      background-color: #e1e1e1;
+    }
+    
+    .profile-picture {
+      margin-right: 20px;
+    }
+    
+    .profile-pic {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+    
+    .close-btn {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 24px;
+      border-radius: 50%;
+      background-color: #e1e1e1;
+      margin-bottom: 20px;
+      transition: background-color 0.3s;
+    }
+    
+    .close-btn:hover {
+      background-color: #d1d1d1;
+    }
+    
+    nav input {
+      margin-left: 20px;
+      padding: 10px;
+      width: 180px;
+      border-radius: 30px;
+      border: none;
+      background-color: #e1e1e1;
+      color: black;
+      font-size: 0.9em;
+    }
+    
+    /* Burger menu styles */
+    .nav-links-burger {
+      display: none;
+    }
+    
+    @media (max-width: 768px) {
+      .profile-pic {
+        display: none;
+      }
+    
+      .pic2 {
+        display: block;
+      }
+    
+      .burger {
+        display: flex;
+      }
+    
+      .nav-links {
+        display: none;
+      }
+    
+      .nav-links-burger {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: -3000px; /* Adjust to be off-screen */
+        width: 48px; /* Adjust width as needed */
+        height: 100vh;
+        background-color: snow;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+        transition: right 0.3s ease;
+        z-index: 999;
+      }
+    
+      .nav-links-burger.active {
+        right: 0;
+      }
+    
+      .nav-links-burger .profile-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin-bottom: 20px;
+      }
+    
+      .nav-links-burger a {
+        margin: 10px 0;
+        padding: 10px;
+        width: 100%;
+        text-align: left;
+      }
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <header>
+    <nav>
+      <div class="left">
+        <a href="{% url 'publications_view' %}"><img src="{% static 'images/icons/logo.png' %}" width="50px" /></a>
+      </div>
+      <input type="text" placeholder="Поиск на Facebook" />
+      <div class="right">
+        <div class="nav-links">
+          <a href="{% url 'publications_view' %}"><img src="{% static 'images/icons8-home-50.png' %}" width="35px" /></a>
+          <a href="#"><img src="{% static 'images/icons8-friends-64.png' %}" width="35px" /></a>
+          <a href="#"><img src="{% static 'images/icons8-video-48.png' %}" width="35px" /></a>
+          <a href="#"><img src="{% static 'images/icons8-online-store-50.png' %}" width="35px" /></a>
+          <a href="#"><img src="{% static 'images/icons8-user-groups-50.png' %}" width="35px" /></a>
+        </div>
+        <div class="profile-picture">
+          <img src="{% static 'images/account.png' %}" alt="Profile" class="profile-pic" />
+        </div>
+        <div class="burger" id="burger">
+          <div class="line"></div>
+          <div class="line"></div>
+          <div class="line"></div>
+        </div>
+      </div>
+    </nav>
+    <!-- Burger Menu -->
+    <div class="nav-links-burger" id="nav-links">
+      <div class="close-btn" id="close-btn">&times;</div>
+      <div class="profile-section">
+        <img src="{% static 'images/account.png' %}" alt="Profile" class="profile-pic pic2" />
+      </div>
+      <a href="{% url 'publications_view' %}"><img src="{% static 'images/icons8-home-50.png' %}" width="35px" /></a>
+      <a href="#"><img src="{% static 'images/icons8-friends-64.png' %}" width="35px" /></a>
+      <a href="#"><img src="{% static 'images/icons8-video-48.png' %}" width="35px" /></a>
+      <a href="#"><img src="{% static 'images/icons8-online-store-50.png' %}" width="35px" /></a>
+      <a href="#"><img src="{% static 'images/icons8-user-groups-50.png' %}" width="35px" /></a>
+    </div>
+  </header>
+{% endblock %}

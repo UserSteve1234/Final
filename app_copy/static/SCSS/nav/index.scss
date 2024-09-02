@@ -1,0 +1,34 @@
+@use '../resets.scss';
+@import '../settings.scss';
+
+
+header {
+    nav {
+      display: flex;
+      align-items: center;
+  
+      .right {
+        display: flex;
+        align-items: center;
+  
+        .nav-links {
+          margin-left: 380px;
+  
+          a {
+            margin-left: 40px;
+            padding: 2px;
+            border-radius: 20%;
+            transition: 400ms;
+  
+            &:hover {
+              background-color: blue;
+            }
+          }
+        }
+  
+        .personal-section {
+          margin-left: 400px;
+        }
+      }
+    }
+  }
